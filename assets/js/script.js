@@ -5,6 +5,7 @@ var windEl = document.getElementById("wind")
 var humidityEl = document.getElementById("humidity")
 var searchBtn = document.getElementById("search-btn")
 var cityInput = document.getElementById("city-input")
+var fivedayForecastEl=document.getElementById("fiveday-forecast")
 
 
 function searchCity() {
@@ -23,6 +24,8 @@ function displayWeather(cityName) {
         })
         .then(function (currentData) {
             console.log(currentData)
+            titleEl.innerHTML = currentData.name + dayjs.unix(currentData.dt).format("MM/DD/YYYY") + "<img src='https://openweathermap.org/img/wn/"+currentData.weather[0].icon+"@2x.png'>"
+
         })
 
     var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + apiKey + "&units=imperial"
@@ -32,8 +35,34 @@ function displayWeather(cityName) {
         })
         .then(function (forecastData) {
             console.log(forecastData)
+            var forecastArr = forecastData.list
+            // fivedayForecastEl.textContent=""
+            for (let i = 3, j=1; i < forecastArr.length; i + 8, j++) {
+                console.log(forecastArr[i])
+             var cardTitle=doctument.getElementById("card-title"+j)
+
+             cardTitle.textContent=dayjs.unix(forecastArr[i].dt).format("(MM/DD/YYYY)")  
+            //  formulate many for each card title change card from class to id card-title
+            var temp=deocument.getElementById("temp"+j)
+            temp.textContent=forecastArr[i].main.temp
+
+// fivedayForecastEl.innerHTML=fivedayForecastEl.innerHTML+`<div class="col-sm-2 mb-3 mb-sm-0">
+// <div class="card">
+//     <div class="card-body bg-secondary text-white">
+//         <img src="https://openweathermap.org/img/wn/10d@2x.png">
+//         <h5 class="card-title">7/24/2023</h5>
+//         <p class="card-text">With supporting text below as a natural lead-in to additional content.
+//         </p>
+
+//     </div>
+// </div>
+// </div>
+// `
+            }
+
 
         })
+
 
 
 
