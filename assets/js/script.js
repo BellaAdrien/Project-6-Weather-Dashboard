@@ -50,9 +50,17 @@ function displayWeather(cityName) {
             // fivedayForecastEl.textContent=""
             for (let i = 3, j = 1; i < forecastArr.length; i = i + 8, j++) {
                 console.log(forecastArr[i])
-                var cardTitle = document.getElementById("card-title" + j)
-                console.log("card-title" + j)
-                cardTitle.textContent = dayjs.unix(forecastArr[i].dt).format("(MM/DD/YYYY)")
+                var cardTitle = document.getElementById("card-title0" + j)
+                console.log("card-title0" + j)
+                cardTitle.textContent = dayjs.unix(forecastArr[i].dt).format(" (MM/DD/YYYY) ")
+                // for (let i = 3, j = 1; i < forecastArr.length; i = i + 8, j++) {
+                //     console.log(forecastArr[i])
+                //     var cardTitle = document.getElementById("card-title0" + j)
+                //     console.log("card-title0" + j)
+                //     cardTitle.textContent = dayjs.unix(forecastArr[i].dt).format("(MM/DD/YYYY)")
+
+
+                // }
                 //  formulate many for each card title change card from class to id card-title
                 var temp = document.getElementById("temp" + j)
                 temp.textContent = forecastArr[i].main.temp
