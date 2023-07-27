@@ -54,7 +54,7 @@ function displayWeather(cityName) {
                 console.log("card-title" + j)
                 cardTitle.textContent = dayjs.unix(forecastArr[i].dt).format("(MM/DD/YYYY)")
                 //  formulate many for each card title change card from class to id card-title
-                var temp = deocument.getElementById("temp" + j)
+                var temp = document.getElementById("temp" + j)
                 temp.textContent = forecastArr[i].main.temp
 
                 // fivedayForecastEl.innerHTML=fivedayForecastEl.innerHTML+`<div class="col-sm-2 mb-3 mb-sm-0">
@@ -94,6 +94,6 @@ function displayWeather(cityName) {
 
 
 
-miamiBtn.addEventListener("click", searchCity)
+// miamiBtn.addEventListener("click", searchCity)
 searchBtn.addEventListener("click", searchCity)
 
