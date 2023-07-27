@@ -40,9 +40,9 @@ function displayWeather(cityName) {
             titleEl.innerHTML = currentData.name + dayjs.unix(currentData.dt).format(" (MM/DD/YYYY)") + "<img src='https://openweathermap.org/img/wn/" + currentData.weather[0].icon + "@2x.png'>"
 
 
-            tempEl.innerHTML = currentData.main.temp + (currentData.temp)
+            tempEl.innerHTML = currentData.temp + (currentData.main.temp)+("F")
 
-            windEl.innerHTML = currentData.wind.speed+(currentData.wind) +("MPH")
+            windEl.innerHTML = currentData.wind.speed+(currentData.wind)+ ("MPH")
             humidityEl.innerHTML = currentData.main.humidity + (currentData.humidity)
 
         })
@@ -56,17 +56,21 @@ function displayWeather(cityName) {
             console.log(forecastData)
             var forecastArr = forecastData.list
             // fivedayForecastEl.textContent=""
-            for (let i = 3, j = 1; i < forecastArr.length; i = i + 8, j++) {
+            for (let i = 5, j = 0; i < forecastArr.length; i = i + 8, j++) {
                 console.log(forecastArr[i])
-                var cardTitle = document.getElementById("card-title0" + j)
-                console.log("card-title0" + j)
+                var cardTitle = document.getElementById("card-title" + j)
+                console.log("card-title" + j)
 
-                cardTitle.textContent=fivedayForecastEl("fivedayForecast")
+                // cardTitle.textContent=fivedayForecastEl("fivedayForecast")
 
-                cardTitle.textContent = dayjs.unix(forecastArr[i].dt).format("(MM/DD/YYYY)")
+                cardTitle.textContent = dayjs.unix(forecastArr[i].dt).format("(MM/DD/YYYY)")+(forecastArr.temp)
 
                 var temp = document.getElementById("temp" + j)
                 temp.textContent = forecastArr[i].main.temp
+                var wind=document.getElementById("wind"+j)
+                wind.textContent=forecastArr[i].wind.speed
+                var humidity=document.getElementById("humidity"+j)
+                humidity.textContent=forecastArr[i].main.humidity
 
             }
 
@@ -74,7 +78,9 @@ function displayWeather(cityName) {
         })
 
 
-}
+ }
+
+// 1:07;07
 
 
 // figure out temp population
