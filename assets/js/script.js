@@ -18,6 +18,8 @@ var fivedayForecastEl = document.getElementById("fiveday-forecast")
 function searchCity() {
     var cityName = cityInput.value
     displayWeather(cityName)
+    var miamiBtn=cityInput
+    
     // var cityMiami = miamiBtn
     // displayWeather(cityMiami)
 
