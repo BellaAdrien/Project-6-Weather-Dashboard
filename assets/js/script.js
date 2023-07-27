@@ -38,13 +38,13 @@ function displayWeather(cityName) {
             titleEl.innerHTML = currentData.name + dayjs.unix(currentData.dt).format(" (MM/DD/YYYY)") + "<img src='https://openweathermap.org/img/wn/" + currentData.weather[0].icon + "@2x.png'>"
 
 
-            tempEl.innerHTML = currentData.temp + (currentData.main.temp)
+            tempEl.innerHTML = currentData.main.temp + (currentData.temp)
 
-            windEl.innerHTML = currentData.wind.speed + (currentData.wind) + ("MPH")
-            humidityEl.innerHTML = currentData.main + (currentData.humidity)
+            windEl.innerHTML = currentData.wind.speed+(currentData.wind) +("MPH")
+            humidityEl.innerHTML = currentData.main.humidity + (currentData.humidity)
 
         })
-
+// figure out ordder this is okay to ask rn humid and temp says NaN and wind has object object after it
     var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + apiKey + "&units=imperial"
     fetch(forecastUrl)
         .then(function (response) {
@@ -58,10 +58,12 @@ function displayWeather(cityName) {
                 console.log(forecastArr[i])
                 var cardTitle = document.getElementById("card-title0" + j)
                 console.log("card-title0" + j)
-                // textContent=
+
+                cardTitle.textContent=fivedayForecastEl("fivedayForecast")
+
                 cardTitle.textContent = dayjs.unix(forecastArr[i].dt).format("(MM/DD/YYYY)")
 
-                // var temp = document.getElementById("temp" + j)
+                var temp = document.getElementById("temp" + j)
                 temp.textContent = forecastArr[i].main.temp
 
             }
@@ -73,10 +75,14 @@ function displayWeather(cityName) {
 }
 
 
+// figure out temp population
+// figure out local storage
 
 
+// localStorage.setItem('');
 
-
+// const username = localStorage.getItem('');
+// console.log(); 
 
 
 
