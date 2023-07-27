@@ -6,19 +6,29 @@ var humidityEl = document.getElementById("humidity")
 var searchBtn = document.getElementById("search-btn")
 var cityInput = document.getElementById("city-input")
 var fivedayForecastEl = document.getElementById("fiveday-forecast")
+// var miamiBtn=document.getElementById("miami-btn")
+// var orlandoBtn=document.getElementById("orlando-btn")
+// var jacksonvilleBtn=document.getElementById("jacksonville-btn")
+// var homesteadBtn=document.getElementById("homestead-btn")
+// var melbourneBtn=document.getElementById("melbourne-btn")
+
 
 
 
 function searchCity() {
     var cityName = cityInput.value
     displayWeather(cityName)
+    // var cityMiami = miamiBtn
+    // displayWeather(cityMiami)
 
 }
 function displayWeather(cityName) {
     var url = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apiKey + "&units=imperial"
 
-
-
+    // currentDay = dayjs().Date()
+    // console.log(currentDay)
+    // var currentData = dayjs().format("MM,dd,YYYY")
+    // var currentDayEl.text()
     fetch(url)
         .then(function (response) {
             return response.json()
@@ -84,6 +94,6 @@ function displayWeather(cityName) {
 
 
 
-
+miamiBtn.addEventListener("click", searchCity)
 searchBtn.addEventListener("click", searchCity)
 
