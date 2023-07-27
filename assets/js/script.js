@@ -18,8 +18,9 @@ var fivedayForecastEl = document.getElementById("fiveday-forecast")
 function searchCity() {
     var cityName = cityInput.value
     displayWeather(cityName)
-    var miamiBtn=cityInput
-    
+
+
+    // var miamiBtn=cityInput
     // var cityMiami = miamiBtn
     // displayWeather(cityMiami)
 
@@ -40,54 +41,57 @@ function displayWeather(cityName) {
             titleEl.innerHTML = currentData.name + dayjs.unix(currentData.dt).format(" (MM/DD/YYYY)") + "<img src='https://openweathermap.org/img/wn/" + currentData.weather[0].icon + "@2x.png'>"
 
 
-            tempEl.innerHTML = currentData.temp + (currentData.main.temp)+("F")
+            tempEl.innerHTML = currentData.main.temp + ( "F")
+            
+            windEl.innerHTML = currentData.wind.speed + ( "MPH")
+            // + (currentData.wind) + ("MPH")
+            humidityEl.innerHTML = currentData.main.humidity + ("%")
 
-            windEl.innerHTML = currentData.wind.speed+(currentData.wind)+ ("MPH")
-            humidityEl.innerHTML = currentData.main.humidity + (currentData.humidity)
-
-        })
+})
 // figure out ordder this is okay to ask rn humid and temp says NaN and wind has object object after it
-    var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + apiKey + "&units=imperial"
-    fetch(forecastUrl)
-        .then(function (response) {
-            return response.json()
-        })
-        .then(function (forecastData) {
-            console.log(forecastData)
-            var forecastArr = forecastData.list
-            // fivedayForecastEl.textContent=""
-            for (let i = 5, j = 0; i < forecastArr.length; i = i + 8, j++) {
-                console.log(forecastArr[i])
-                var cardTitle = document.getElementById("card-title" + j)
-                console.log("card-title" + j)
+var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + apiKey + "&units=imperial"
 
-                // cardTitle.textContent=fivedayForecastEl("fivedayForecast")
+fetch(forecastUrl)
+    .then(function (response) {
+        return response.json()
+    })
+    .then(function (forecastData) {
+        console.log(forecastData)
+        var forecastArr = forecastData.list
+        // fivedayForecastEl.textContent=""
+        for (let i = 1, j = 1; i < forecastArr.length; i = i + 8, j++) {
+            console.log(forecastArr[i])
+            var cardTitle = document.getElementById("card-title" + j)
+            console.log("card-title" + j)
 
-                cardTitle.textContent = dayjs.unix(forecastArr[i].dt).format("(MM/DD/YYYY)")+(forecastArr.temp)
+            // cardTitle.textContent=fivedayForecastEl("fivedayForecast")
 
-                var temp = document.getElementById("temp" + j)
-                temp.textContent = forecastArr[i].main.temp
-                var wind=document.getElementById("wind"+j)
-                wind.textContent=forecastArr[i].wind.speed
-                var humidity=document.getElementById("humidity"+j)
-                humidity.textContent=forecastArr[i].main.humidity
+            cardTitle.textContent = dayjs.unix(forecastArr[i].dt).format("(MM/DD/YYYY)") 
 
-            }
+            var temp = document.getElementById("temp" + j)
+            temp.textContent = forecastArr[i].main.temp + ("F")
+            var wind = document.getElementById("wind" + j)
+            wind.textContent = forecastArr[i].wind.speed + ("MPH")
+            var humidity = document.getElementById("humidity" + j)
+            humidity.textContent = forecastArr[i].main.humidity + ("%")
+
+        }
 
 
-        })
+    })
 
 
  }
 
-// 1:07;07
 
 
-// figure out temp population
-// figure out local storage
+// function savecityStorage(city){
+// var cities=localStorage.getitems("cities")
+// 
+// }
 
-
-// localStorage.setItem('');
+// function readValue
+// // ;
 
 // const username = localStorage.getItem('');
 // console.log(); 
