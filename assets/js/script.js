@@ -35,7 +35,13 @@ function displayWeather(cityName) {
         })
         .then(function (currentData) {
             console.log(currentData)
-            titleEl.innerHTML = currentData.name + dayjs.unix(currentData.dt).format("MM/DD/YYYY") + "<img src='https://openweathermap.org/img/wn/" + currentData.weather[0].icon + "@2x.png'>"
+            titleEl.innerHTML = currentData.name + dayjs.unix(currentData.dt).format(" (MM/DD/YYYY)") + "<img src='https://openweathermap.org/img/wn/" + currentData.weather[0].icon + "@2x.png'>"
+
+
+            tempEl.innerHTML = currentData.temp + (currentData.main.temp)
+
+            windEl.innerHTML = currentData.wind.speed + (currentData.wind) + ("MPH")
+            humidityEl.innerHTML = currentData.main + (currentData.humidity)
 
         })
 
@@ -48,19 +54,20 @@ function displayWeather(cityName) {
             console.log(forecastData)
             var forecastArr = forecastData.list
             // fivedayForecastEl.textContent=""
-            for (let i = 3, j = 1; i < forecastArr.length; i = i + 12, j++) {
+            for (let i = 3, j = 1; i < forecastArr.length; i = i + 8, j++) {
                 console.log(forecastArr[i])
                 var cardTitle = document.getElementById("card-title0" + j)
                 console.log("card-title0" + j)
-                cardTitle.textContent = dayjs.unix(forecastArr[i].dt).format("  (MM/DD/YYYY)  ")
-                
-                var temp = document.getElementById("temp" + j)
+                // textContent=
+                cardTitle.textContent = dayjs.unix(forecastArr[i].dt).format("(MM/DD/YYYY)")
+
+                // var temp = document.getElementById("temp" + j)
                 temp.textContent = forecastArr[i].main.temp
 
             }
 
 
-})
+        })
 
 
 }
