@@ -88,11 +88,11 @@ fetch(forecastUrl)
 
 
 
-// function savecityWeather(){
-// var cities=localStorage.setitems('forecastData', json.stringify(cityWeather))
+function savecityWeather(){
+var cities=localStorage.setitems('forecastData', json.stringify(cityWeather))
 
 // 
-// }
+ }
 
 // function readValue
 // // ;
